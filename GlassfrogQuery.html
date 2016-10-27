@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-   <meta name="author" content="Romain Tchertchian">
-   <meta name="description" content="glassfrog api free role search engine">
-   <title>GlassfrogRoleQuery</title>
-   <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
-   <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
-        <!--jQuery, linked from a CDN-->
-   <script type="text/javascript" src="http://use.typekit.com/oya4cmx.js"></script>
-   <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
-   <script type='text/javascript' src="config.js"></script>
-   <script type='text/javascript' src="scripts.js"></script>
-   <link rel="stylesheet" href="style.css" />
+	<meta name="author" content="Romain Tchertchian">
+	<meta name="description" content="glassfrog api free role search engine">
+	<title>GlassfrogRoleQuery</title>
+	<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0">
+	<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>
+	<!--jQuery, linked from a CDN-->
+	<script type="text/javascript" src="http://use.typekit.com/oya4cmx.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<script type='text/javascript' src="scripts.js"></script>
+	<link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-<div>
-   <header>
-      <h1> Unassigned Role - Search Engine </h1>
-   </header>
-   <section>
-      <div id="instruct" >
-      <h3>You can specify a circle for your query or BIO circle will be used as default starting point.</h3>
-      </div>
-   </section>
-   <section id="fetch">
-      <input type="text" placeholder="Enter a circle code" id="term" />
-      <button id="search" class="button">Search!</button>
-   </section>
-   <section id="message">
-   </section>
-   <div style="overflow-x:auto;">
-   </table>
-   <table id="tabledata">
-   </table>
-   </div>
-   <footer>
-      <p>Powered by <a href="https://app.glassfrog.com/circles/10211 target='_blank'"><span class="team">APIteam</span></a></p>
-   </footer>
-</div>
+	<div>
+		<header>
+			<h1> Unassigned Role - Search Engine </h1>
+		</header>
+		<section>
+			<div id="instruct">
+				<h3>You can specify a circle for your query or BIO circle will be used as default starting point.</h3>
+			</div>
+		</section>
+		<section id="fetch">
+			<input type="text" placeholder="Enter a circle code" id="term" />
+			<button id="search" class="button">Search!</button>
+		</section>
+		<section id="message">
+		</section>
+		<div style="overflow-x:auto;">
+			</table>
+			<table id="tabledata">
+			</table>
+		</div>
+		<footer>
+			<p>Powered by <a href="https://app.glassfrog.com/circles/10211 target='_blank'"><span class="team">APIteam</span></a></p>
+		</footer>
+	</div>
 </body>
+
 </html>
