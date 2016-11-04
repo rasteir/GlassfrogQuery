@@ -49,38 +49,48 @@ function getLLname(json, codeLL) {
 
 $(document).ready(function () {
   var getData = function (circle) {
-    
-    $.getJSON("request.php",{circle: circle},function (json) {
-        if (json != "Nothing found.") {
-          var circlename = json.linked.circles[0].name;
-          var circleid = json.linked.circles[0].id;
-          var codeLL = getLLcode(json);
-          var nameLL = getLLname(json, codeLL);
-          var mailLL = getLLmail(json, codeLL);
-          var roleid;
-          var rolename;
-          var incircle;
 
-          for (i = 0; i < (json.roles.length); i++) {
-            if (json.roles[i].links.supporting_circle != null) {
-              getData(json.roles[i].links.supporting_circle);
+    $.getJSON("request.php", { circle: circle }, function (json) {
+      if (json != "Nothing found.") {
+        var circlename = json.linked.circles[0].name;
+        var circleid = json.linked.circles[0].id;
+        var codeLL = getLLcode(json);
+        var nameLL = getLLname(json, codeLL);
+        var mailLL = getLLmail(json, codeLL);
+        var roleid;
+        var rolename;
+        var incircle;
+        var exrole = ['Facilitator', 'Rep%20Link', 'Lead%20Link', 'Secretary'];
+        var ex;
+
+        for (i = 0; i < (json.roles.length); i++) {
+          if (json.roles[i].links.supporting_circle != null) {
+            getData(json.roles[i].links.supporting_circle);
+          }
+          if (json.roles[i].links.people.length == 0) {
+            rolename = (json.roles[i].name).replace(/\s/g, '%20');
+            rolename = rolename.replace('&', 'and');
+            ex = false;
+            for (j = 0, len = exrole.length; j < len; j++) {
+              if (rolename.indexOf(exrole[j]) > -1) {
+                ex = true;
+              }
             }
-            if (json.roles[i].links.people.length == 0) {
+            if (ex == false) {
               $('#message').html("<h2 class='result'>Unassigned Roles List</h2>");
               roleid = json.roles[i].id;
-              rolename = (json.roles[i].name).replace(/\s/g, '%20');
-              rolename = rolename.replace('&', 'and');
               incircle = (json.linked.circles[0].name).replace(/\s/g, '%20');
               incircle = incircle.replace('&', 'and');
               $('#tabledata').append("<tr> <td><a href='https://app.glassfrog.com/circles/" + circleid + "' target='_blank'>" + circlename + "</a></td><td><a href='https://app.glassfrog.com/roles/" + roleid + "' target='_blank'>" + json.roles[i].name + "</a></td><td><a href=mailto:" + mailLL + "?subject=Interest%20on%20Role%20" + rolename + "%20in%20circle%20" + incircle + "&body=Hello,%20I'm%20interested%20to%20know%20more%20about%20this%20role,%20can%20we%20talk%20about%20it?>" + nameLL + "</a></td><td>" + json.roles[i].purpose + "</td></tr>");
             }
           }
         }
-        else {
-          $('#message').html('<h2 class="loading">No Data available</h2>');
-        };
-        return false;
       }
+      else {
+        $('#message').html('<h2 class="loading">No Data available</h2>');
+      };
+      return false;
+    }
     );
   };
   $('#search').click(function () {
